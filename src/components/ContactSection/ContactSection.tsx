@@ -32,7 +32,7 @@ const contacts = [
     {
         icon: Instagram,
         title: "Instagram",
-        content: "@bimbaife_official",
+        content: `@${instagram}`,
         href: `https://instagram.com/${instagram}`,
     },
 ];
