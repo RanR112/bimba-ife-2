@@ -1,0 +1,95 @@
+// ─── COLOR PALETTE ────────────────────────────────────────────────────────────
+// Core brand — warm orange identity
+$sun:          #FF6B1A;
+$sun-light:    #FF8C47;
+$sun-pale:     #FFF0E6;
+$sun-hover:    #E5601A;
+
+$honey:        #FFB830;
+$honey-pale:   #FFF8E6;
+$honey-dark:   #6B4A00;
+
+$sky:          #35B8E0;
+$sky-dark:     #0D9FCA;
+$sky-pale:     #E6F7FD;
+
+$leaf:         #52C96B;
+$leaf-dark:    #3BAD50;
+$leaf-pale:    #E8F9EC;
+
+$berry:        #A066D3;
+$berry-dark:   #8B50D0;
+$berry-pale:   #F3ECFC;
+
+$rose:         #FF6B8A;
+$rose-dark:    #E04070;
+
+$cream:        #FFFBF3;
+$sand:         #FFF3E0;
+$white:        #FFFFFF;
+$ink:          #2D2014;
+$ink-muted:    #7A6552;
+$ink-light:    #B09080;
+
+// ─── GRADIENT PRESETS ─────────────────────────────────────────────────────────
+$grad-hero:    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,184,48,.25) 0%, transparent 60%),
+               radial-gradient(ellipse 60% 40% at 100% 80%, rgba(53,184,224,.15) 0%, transparent 50%),
+               radial-gradient(ellipse 50% 40% at 0% 70%, rgba(82,201,107,.12) 0%, transparent 50%),
+               #FFFBF3;
+
+$grad-about:   linear-gradient(180deg, #FFF8F0 0%, #FFF0E0 100%);
+$grad-sched:   linear-gradient(180deg, #E8F5FD 0%, #F0FAFF 100%);
+$grad-contact: linear-gradient(135deg, $sun 0%, $sun-light 50%, $sun 100%);
+
+// Program card banner gradients
+$grad-prog-orange: linear-gradient(135deg, $sun-light, $sun);
+$grad-prog-blue:   linear-gradient(135deg, $sky, $sky-dark);
+$grad-prog-purple: linear-gradient(135deg, #BB8EE8, $berry-dark);
+
+// Day card header gradients
+$grad-mon: linear-gradient(135deg, $sun-light, $sun);
+$grad-tue: linear-gradient(135deg, $sky, $sky-dark);
+$grad-wed: linear-gradient(135deg, $leaf, $leaf-dark);
+$grad-thu: linear-gradient(135deg, #BB8EE8, $berry-dark);
+$grad-fri: linear-gradient(135deg, $rose, $rose-dark);
+$grad-sat: linear-gradient(135deg, #BDBDBD, #9E9E9E);
+
+// ─── TYPOGRAPHY ───────────────────────────────────────────────────────────────
+$font-display: 'Baloo 2', cursive;
+$font-body:    'Nunito', sans-serif;
+
+// ─── SPACING ──────────────────────────────────────────────────────────────────
+$sp-xs:  8px;
+$sp-sm:  16px;
+$sp-md:  24px;
+$sp-lg:  40px;
+$sp-xl:  64px;
+$sp-2xl: 96px;
+
+// ─── BORDER RADIUS ────────────────────────────────────────────────────────────
+$r-sm:   12px;
+$r-md:   20px;
+$r-lg:   28px;
+$r-xl:   40px;
+$r-full: 9999px;
+
+// ─── SHADOWS ──────────────────────────────────────────────────────────────────
+$sh-sm:  0 2px 12px rgba(255, 107, 26, .15);
+$sh-md:  0 6px 24px rgba(0, 0, 0, .10);
+$sh-lg:  0 12px 40px rgba(0, 0, 0, .13);
+$sh-sun: 0 8px 28px rgba(255, 107, 26, .35);
+$sh-sun-hover: 0 14px 36px rgba(255, 107, 26, .45);
+
+// ─── BREAKPOINTS ──────────────────────────────────────────────────────────────
+$bp-sm:  480px;
+$bp-md:  640px;
+$bp-lg:  768px;
+$bp-xl:  900px;
+$bp-2xl: 1024px;
+$bp-3xl: 1140px;
+
+// ─── Z-INDEX ──────────────────────────────────────────────────────────────────
+$z-base:   1;
+$z-deco:   1;
+$z-content: 2;
+$z-nav:    1000;

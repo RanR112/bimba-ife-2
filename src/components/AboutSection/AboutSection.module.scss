@@ -1,0 +1,156 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.section {
+  @include section-pad;
+  background: $grad-about;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-lg;
+  align-items: center;
+
+  @include xl {
+    flex-direction: row;
+    align-items: stretch;
+    gap: $sp-xl;
+  }
+}
+
+// ─── LEFT ─────────────────────────────────────────────────────────────────────
+.left {
+  flex: 1;
+  @include flex-col;
+  gap: $sp-sm;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $sun;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: $ink;
+}
+
+.titleAccent {
+  color: $sun;
+}
+
+.body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: $ink-muted;
+
+  strong {
+    color: $ink;
+  }
+}
+
+// ─── FACILITIES ───────────────────────────────────────────────────────────────
+.facilityGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.facilityItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: $white;
+  border-radius: $r-md;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: $ink;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+// ─── STATS RIBBON ─────────────────────────────────────────────────────────────
+.statsRibbon {
+  display: flex;
+  background: $sun;
+  border-radius: $r-xl;
+  overflow: hidden;
+  margin-top: $sp-sm;
+  box-shadow: $sh-sun;
+}
+
+.statCell {
+  flex: 1;
+  padding: $sp-sm;
+  text-align: center;
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.statNum {
+  font-family: $font-display;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: $white;
+  line-height: 1;
+}
+
+.statLbl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+// ─── RIGHT / MOSAIC ───────────────────────────────────────────────────────────
+.right {
+  flex: 1;
+  max-width: 460px;
+  width: 100%;
+}
+
+.mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 180px 130px;
+  gap: 12px;
+  height: 100%;
+}
+
+.mosaicCell {
+  position: relative;
+  border-radius: $r-lg;
+  overflow: hidden;
+  cursor: default;
+}
+
+.mosaicImage {
+  object-fit: cover;
+}
+
+.mosaicSpan {
+  grid-row: 1 / span 2;
+}
+
+.mosaicEmoji {
+  font-size: 3.5rem;
+  display: block;
+  // Use emoji as decorative illustration fallback
+  // In production, replace with Next Image illustrations
+}

@@ -1,0 +1,83 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-pad;
+  background: $grad-about;
+}
+
+.sectionHeader { @include section-header; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $berry;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: $ink;
+  margin-bottom: 10px;
+}
+
+.titleAccent { color: $sun; }
+
+.desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: $ink-muted;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+// ─── GRID ─────────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+
+  @include md { grid-template-columns: 1fr 1fr; }
+  @include xl { grid-template-columns: repeat(3, 1fr); }
+}
+
+// ─── RULE CARD ────────────────────────────────────────────────────────────────
+.ruleCard {
+  @include card-base;
+  padding: $sp-sm $sp-md;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: default;
+  transition: box-shadow 0.25s;
+
+  &:hover { box-shadow: $sh-lg; }
+}
+
+.ruleBadge {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: $honey-pale;
+  @include flex-center;
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 1rem;
+  color: $sun;
+  flex-shrink: 0;
+}
+
+.ruleText {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: $ink-muted;
+  padding-top: 4px;
+}

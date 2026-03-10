@@ -1,0 +1,103 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-pad;
+  background: $cream;
+}
+
+.sectionHeader {
+  @include section-header;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $sun;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: $ink;
+  margin-bottom: 10px;
+}
+
+.titleAccent { color: $sun; }
+
+.desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: $ink-muted;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+// ─── GRID ─────────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  @include md  { gap: 20px; }
+  @include xl  { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+}
+
+// ─── CARD ─────────────────────────────────────────────────────────────────────
+.card {
+  @include card-base;
+  padding: $sp-md $sp-sm;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: default;
+  transition: border-color 0.3s ease;
+
+  &:hover { border-color: $sun-pale; }
+}
+
+.iconWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 22px;
+  @include flex-center;
+  margin: 0 auto $sp-sm;
+  position: relative;
+
+  // dashed ring
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 26px;
+    border: 2px dashed currentColor;
+    opacity: 0.2;
+  }
+}
+
+// ─── ICON COLORS ──────────────────────────────────────────────────────────────
+.iconOrange { background: $sun-pale;   color: $sun; }
+.iconSky    { background: $sky-pale;   color: $sky; }
+.iconLeaf   { background: $leaf-pale;  color: $leaf; }
+.iconBerry  { background: $berry-pale; color: $berry; }
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: $ink;
+}
+
+.cardDesc {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: $ink-muted;
+}

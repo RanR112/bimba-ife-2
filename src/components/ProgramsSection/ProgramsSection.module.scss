@@ -1,0 +1,140 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-pad;
+  background: $cream;
+}
+
+.sectionHeader {
+  @include section-header;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $sky;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: $ink;
+  margin-bottom: 10px;
+}
+
+.titleAccent { color: $sun; }
+
+.desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: $ink-muted;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+// ─── GRID ─────────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+
+  @include md  { grid-template-columns: 1fr 1fr; }
+  @include xl  { grid-template-columns: repeat(3, 1fr); }
+}
+
+// ─── CARD ─────────────────────────────────────────────────────────────────────
+.card {
+  border-radius: $r-xl;
+  overflow: hidden;
+  box-shadow: $sh-md;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+  transition: box-shadow 0.3s ease;
+
+  &:hover { box-shadow: $sh-lg; }
+}
+
+// ─── BANNER ───────────────────────────────────────────────────────────────────
+.banner {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  @include xl { height: 180px; }
+}
+
+.bannerDots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.3) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+.bannerOrange { background: $grad-prog-orange; }
+.bannerBlue   { background: $grad-prog-blue; }
+.bannerPurple { background: $grad-prog-purple; }
+
+.bannerIcon {
+  position: relative;
+  z-index: 1;
+}
+
+// ─── BODY ─────────────────────────────────────────────────────────────────────
+.body {
+  background: $white;
+  flex: 1;
+  padding: $sp-md;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: $ink;
+}
+
+.cardDesc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: $ink-muted;
+  flex: 1;
+}
+
+.meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 2px dashed #F0EBE3;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: $r-full;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.chipOrange { background: $sun-pale;   color: $sun; }
+.chipBlue   { background: $sky-pale;   color: $sky-dark; }
+.chipPurple { background: $berry-pale; color: $berry-dark; }

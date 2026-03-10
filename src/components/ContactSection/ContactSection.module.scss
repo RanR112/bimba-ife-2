@@ -1,0 +1,151 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-pad;
+  background: $grad-contact;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+// ─── DECORATIVE ORBS ─────────────────────────────────────────────────────────
+.orbTopRight {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .06);
+  top: -200px;
+  right: -100px;
+  pointer-events: none;
+}
+
+.orbBottomLeft {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .06);
+  bottom: -150px;
+  left: -80px;
+  pointer-events: none;
+}
+
+// ─── HEADER ───────────────────────────────────────────────────────────────────
+.sectionHeader {
+  @include section-header;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, .75);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: $white;
+  margin-bottom: 10px;
+}
+
+.titleAccent { color: $honey; }
+
+.desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, .8);
+  max-width: 540px;
+  margin: 10px auto 0;
+}
+
+// ─── CARDS ────────────────────────────────────────────────────────────────────
+.cardsGrid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+
+  @include xl { grid-template-columns: repeat(4, 1fr); }
+}
+
+.contactCard {
+  background: rgba(255, 255, 255, .14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, .25);
+  border-radius: $r-lg;
+  padding: $sp-sm;
+  text-align: center;
+  cursor: default;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cardIcon {
+  display: block;
+  margin: 0 auto 10px;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, .15);
+  border-radius: 14px;
+  @include flex-center;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: $white;
+  margin-bottom: 6px;
+}
+
+.cardText {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, .8);
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
+.cardLink {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, .85);
+  line-height: 1.55;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover { color: $honey; text-decoration: underline; }
+}
+
+// ─── CTA ─────────────────────────────────────────────────────────────────────
+.ctaWrap {
+  @include flex-center;
+  margin-top: $sp-lg;
+}
+
+.waBtn {
+  @include btn-reset;
+  background: $white;
+  color: $sun;
+  padding: 12px 24px;
+  border-radius: $r-full;
+  font-weight: 800;
+  font-size: 0.985rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .2);
+  }
+}

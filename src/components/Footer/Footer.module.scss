@@ -1,0 +1,116 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.footer {
+  background: #080502;
+  color: $white;
+  padding: $sp-xl 0 $sp-md;
+}
+
+// ─── GRID ─────────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  gap: $sp-lg;
+  grid-template-columns: 1fr;
+  margin-bottom: $sp-lg;
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include xl {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+// ─── BRAND COLUMN ─────────────────────────────────────────────────────────────
+.brandCol {
+  @include flex-col;
+  gap: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandMark {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  // background: $;
+  @include flex-center;
+  color: $white;
+  // box-shadow: $sh-sun;
+  transform: rotate(-3deg);
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: $white;
+  line-height: 1;
+
+  em {
+    color: $sun;
+    font-style: normal;
+  }
+}
+
+.brandDesc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: $white;
+  max-width: 300px;
+}
+
+// ─── LINK COLUMNS ─────────────────────────────────────────────────────────────
+.colTitle {
+  font-family: $font-display;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $white;
+  margin-bottom: 14px;
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  font-size: 0.88rem;
+  color: $white;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $sun;
+  }
+}
+
+// ─── BOTTOM BAR ───────────────────────────────────────────────────────────────
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: $sp-sm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: $white;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $sun;
+  }
+}
+
+.bottomAccent {
+  color: $sun;
+}

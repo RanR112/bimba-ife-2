@@ -1,0 +1,144 @@
+@use 'variables' as *;
+
+// ─── RESPONSIVE BREAKPOINTS ───────────────────────────────────────────────────
+@mixin sm   { @media (min-width: #{$bp-sm})  { @content; } }
+@mixin md   { @media (min-width: #{$bp-md})  { @content; } }
+@mixin lg   { @media (min-width: #{$bp-lg})  { @content; } }
+@mixin xl   { @media (min-width: #{$bp-xl})  { @content; } }
+@mixin xxl  { @media (min-width: #{$bp-2xl}) { @content; } }
+@mixin xxxl { @media (min-width: #{$bp-3xl}) { @content; } }
+
+// ─── FLEXBOX HELPERS ──────────────────────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── TYPOGRAPHY ───────────────────────────────────────────────────────────────
+@mixin font-display($size: 2rem, $weight: 800) {
+  font-family: $font-display;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+@mixin font-body($size: 1rem) {
+  font-family: $font-body;
+  font-size: $size;
+  line-height: 1.75;
+  color: $ink-muted;
+}
+
+// ─── CARD BASE ────────────────────────────────────────────────────────────────
+@mixin card-base($radius: $r-lg) {
+  background: $white;
+  border-radius: $radius;
+  box-shadow: $sh-md;
+}
+
+// ─── BUTTON BASE ──────────────────────────────────────────────────────────────
+@mixin btn-reset {
+  font-family: $font-body;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:active { transform: scale(0.97); }
+}
+
+// ─── SECTION PADDING ──────────────────────────────────────────────────────────
+@mixin section-pad {
+  padding: $sp-lg 0;
+
+  @include xl {
+    padding: $sp-xl 0;
+  }
+}
+
+// ─── CONTAINER ────────────────────────────────────────────────────────────────
+@mixin container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 $sp-sm;
+
+  @include md { padding: 0 $sp-md; }
+  @include xxl { padding: 0 $sp-lg; }
+}
+
+// ─── SECTION HEADER ───────────────────────────────────────────────────────────
+@mixin section-header {
+  margin-bottom: $sp-lg;
+  text-align: center;
+}
+
+// ─── HOVER LIFT ───────────────────────────────────────────────────────────────
+@mixin hover-lift($y: -8px) {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY($y);
+    box-shadow: $sh-lg;
+  }
+}
+
+// ─── DOTTED TEXTURE ───────────────────────────────────────────────────────────
+@mixin dot-texture($color: rgba(255,107,26,.08), $size: 28px) {
+  background-image: radial-gradient(circle, $color 1px, transparent 1px);
+  background-size: $size $size;
+}
+
+// ─── WAVE OVERLAY ─────────────────────────────────────────────────────────────
+@mixin wave-overlay($fill: $cream) {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: $fill;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+}
+
+// ─── TRUNCATE TEXT ────────────────────────────────────────────────────────────
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ─── VISUALLY HIDDEN ──────────────────────────────────────────────────────────
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

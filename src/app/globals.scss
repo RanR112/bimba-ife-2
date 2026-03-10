@@ -1,0 +1,151 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ─── GOOGLE FONTS ─────────────────────────────────────────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap');
+
+// ─── RESET ────────────────────────────────────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-body;
+  background: $cream;
+  color: $ink;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: $font-body;
+}
+
+// ─── TYPOGRAPHY SCALE ─────────────────────────────────────────────────────────
+.tDisplay {
+  font-family: $font-display;
+  font-size: clamp(2rem, 8vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.tH2 {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.tH3 {
+  font-family: $font-display;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.tBody {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: $ink-muted;
+}
+
+.tSmall {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: $ink-muted;
+}
+
+// ─── SHARED LAYOUT ────────────────────────────────────────────────────────────
+.container {
+  @include container;
+}
+
+// ─── SHARED SECTION ELEMENTS ──────────────────────────────────────────────────
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $sun;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.sectionHeader {
+  @include section-header;
+
+  .tBody {
+    max-width: 540px;
+    margin: 10px auto 0;
+  }
+}
+
+// ─── WAVE SEPARATORS ──────────────────────────────────────────────────────────
+.waveSep {
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+// ─── KEYFRAME ANIMATIONS ──────────────────────────────────────────────────────
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+@keyframes cloudDrift {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(24px); }
+}
+
+@keyframes starSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.3); }
+}
+
+@keyframes badgePop {
+  0%   { opacity: 0; transform: scale(0.7) translateY(8px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes waveSlide {
+  from { background-position: 0 center; }
+  to   { background-position: 60px center; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}

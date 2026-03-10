@@ -1,0 +1,740 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── HERO WRAPPER ─────────────────────────────────────────────────────────────
+.hero {
+  // No top padding needed — transparent navbar overlays the hero from the top.
+  // Content is pushed down via heroBody padding instead.
+  padding-top: 0;
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  CLOUD PLAYGROUND BACKGROUND
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ─── SKY GRADIENT ─────────────────────────────────────────────────────────────
+// Transitions from soft ice-blue at top → warm cream in the middle →
+// golden-peach near the grass strip at the bottom
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    #dcf0fa 0%,
+    // ice-blue sky at top
+    #eef7fc 18%,
+    // fading blue
+    #fff8f0 52%,
+    // warm cream midpoint
+    #ffe8c0 80%,
+    // warm golden-peach
+    #ffd898 100% // rich amber near grass
+  );
+}
+
+// ─── SUN ──────────────────────────────────────────────────────────────────────
+.sun {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  // Position: top-right corner, partially off-screen
+  top: -52px;
+  right: 52px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  // Bright core with warm amber halo
+  background: radial-gradient(circle, #ffe566 0%, #ffd93d 35%, rgba(255, 184, 48, 0.45) 60%, transparent 78%);
+  box-shadow:
+    0 0 0 0 rgba(255, 184, 48, 0.35),
+    0 0 60px 20px rgba(255, 200, 60, 0.18);
+
+  // Framer Motion handles the pulse scale — box-shadow anim via keyframe
+  animation: sunGlow 4s ease-in-out infinite;
+
+  @include xl {
+    width: 200px;
+    height: 200px;
+    top: -70px;
+    right: 80px;
+  }
+}
+
+@keyframes sunGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 40px 10px rgba(255, 200, 60, 0.15),
+      0 0 80px 30px rgba(255, 184, 48, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 60px 20px rgba(255, 200, 60, 0.25),
+      0 0 110px 50px rgba(255, 184, 48, 0.12);
+  }
+}
+
+// ─── CLOUD BASE COMPONENT ─────────────────────────────────────────────────────
+// Each cloud is a wrapper div containing:
+//   .cloudBody — the horizontal pill base
+//   .cloudBump — circular bumps that sit on top
+.cloud {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cloudBody {
+  position: absolute;
+  inset: 0;
+  border-radius: $r-full;
+  background: $white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+}
+
+.cloudBump {
+  position: absolute;
+  border-radius: 50%;
+  background: $white;
+}
+
+// bump layout slots (positioned per cloud size via modifiers below)
+.bumpA {
+} // tallest/leftmost
+.bumpB {
+} // mid
+.bumpC {
+} // right
+
+// ── LARGE CLOUD ──
+.cloudLg {
+  width: 180px;
+  height: 56px;
+
+  .bumpA {
+    width: 76px;
+    height: 76px;
+    bottom: 28px;
+    left: 22px;
+  }
+  .bumpB {
+    width: 60px;
+    height: 60px;
+    bottom: 28px;
+    left: 76px;
+  }
+  .bumpC {
+    width: 44px;
+    height: 44px;
+    bottom: 28px;
+    left: 122px;
+  }
+}
+
+// ── MEDIUM CLOUD ──
+.cloudMd {
+  width: 130px;
+  height: 42px;
+
+  .bumpA {
+    width: 56px;
+    height: 56px;
+    bottom: 22px;
+    left: 16px;
+  }
+  .bumpB {
+    width: 44px;
+    height: 44px;
+    bottom: 22px;
+    left: 60px;
+  }
+}
+
+// ── SMALL CLOUD ──
+.cloudSm {
+  width: 90px;
+  height: 30px;
+
+  .bumpA {
+    width: 40px;
+    height: 40px;
+    bottom: 16px;
+    left: 12px;
+  }
+  .bumpB {
+    width: 30px;
+    height: 30px;
+    bottom: 16px;
+    left: 42px;
+  }
+}
+
+// ── WISPY CLOUD ──
+.cloudWisp {
+  width: 110px;
+  height: 34px;
+  opacity: 0.7;
+
+  .bumpA {
+    width: 48px;
+    height: 48px;
+    bottom: 18px;
+    left: 18px;
+  }
+}
+
+// ── CLOUD POSITIONS ──
+.cloudTR {
+  top: 80px;
+  right: 3%;
+
+  @include xl {
+    top: 88px;
+    right: 8%;
+  }
+}
+
+.cloudTL {
+  top: 110px;
+  left: 2%;
+
+  @include xl {
+    top: 120px;
+    left: 4%;
+  }
+}
+
+.cloudMR {
+  top: 38%;
+  right: 6%;
+
+  // Hide on small mobile to avoid overlapping content card
+  @media (max-width: #{$bp-xl}) {
+    display: none;
+  }
+}
+
+.cloudBL {
+  bottom: 28%;
+  left: 1%;
+  opacity: 0.65;
+
+  @media (max-width: #{$bp-md}) {
+    display: none;
+  }
+}
+
+// ─── BIRDS ────────────────────────────────────────────────────────────────────
+// Tiny V-shaped bird silhouettes — CSS animation loops them across the sky
+.bird {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  animation: birdFly linear infinite;
+}
+
+.bird1 {
+  top: 14%;
+  left: -60px;
+  animation-duration: 22s;
+  animation-delay: -6s;
+}
+
+.bird2 {
+  top: 22%;
+  left: -40px;
+  animation-duration: 28s;
+  animation-delay: -14s;
+}
+
+.bird3 {
+  top: 18%;
+  left: -30px;
+  animation-duration: 34s;
+  animation-delay: -22s;
+}
+
+@keyframes birdFly {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw + 80px));
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  LANDSCAPE BOTTOM LAYER — unified ground + grass + section transition
+//  All three are position:absolute; bottom:0 so they stack flush to the
+//  very bottom of the hero, with zero gap between hero and next section.
+// ══════════════════════════════════════════════════════════════════════════════
+
+// 1. GROUND FILL ───────────────────────────────────────────────────────────────
+// A solid amber/golden strip anchored to bottom:0.
+// Its height exceeds any wave trough so the background gradient never peeks
+// through the bottom of the grass SVG. z-index 3 puts it above the sky.
+.groundFill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // Tall enough to underlay the full grass SVG height on any screen
+  height: 120px;
+  z-index: 3;
+  pointer-events: none;
+  // Warm golden-amber — matches the sky gradient's lowest stop so the
+  // ground appears as a natural continuation of the horizon
+  background: linear-gradient(180deg, #ffd898 0%, #f5c060 100%);
+
+  @include lg {
+    height: 140px;
+  }
+  @include xxl {
+    height: 160px;
+  }
+}
+
+// 2. GRASS LAYER ───────────────────────────────────────────────────────────────
+// Two-path SVG grass that fills width 100% with no gaps.
+// preserveAspectRatio="none" on the SVG means it scales perfectly to
+// any viewport without leaving empty corners.
+.grassLayer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // Height matches the SVG viewBox aspect so it fills consistently.
+  // The SVG internally handles the wave shapes.
+  height: 120px;
+  z-index: 4; // above groundFill
+  pointer-events: none;
+  line-height: 0;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    // Preserve the full bottom fill — no gaps at corners
+  }
+
+  @include lg {
+    height: 140px;
+  }
+  @include xxl {
+    height: 160px;
+  }
+}
+
+// 3. SECTION TRANSITION ────────────────────────────────────────────────────────
+// A thin wave filled with the *next* section's background colour (#FFFBF3).
+// This sits on top of the grass and creates the seamless bleed into WhySection.
+// z-index 5 ensures it's always the topmost background element.
+.sectionTransition {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 5;
+  pointer-events: none;
+  line-height: 0;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @include lg {
+    height: 80px;
+  }
+  @include xxl {
+    height: 90px;
+  }
+}
+
+// ─── HERO BODY ────────────────────────────────────────────────────────────────
+.heroBody {
+  position: relative;
+  z-index: 6; // above all landscape layers
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // Top: push content below the transparent navbar
+  // Bottom: keep content above the grass strip (120px) + comfortable margin
+  padding: calc(64px + #{$sp-lg}) 0 160px;
+
+  @include lg {
+    padding-bottom: 180px;
+  }
+  @include xxl {
+    padding-bottom: 200px;
+  }
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $sp-lg;
+
+  @include xl {
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    gap: $sp-xl;
+  }
+}
+
+// ─── TEXT COLUMN ──────────────────────────────────────────────────────────────
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-sm;
+  align-items: center;
+
+  @include xl {
+    align-items: flex-start;
+    max-width: 520px;
+  }
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: $honey-pale;
+  border: 2px solid $honey;
+  border-radius: $r-full;
+  padding: 6px 16px;
+  font-weight: 800;
+  font-size: 0.78rem;
+  color: $honey-dark;
+  animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $honey;
+  animation: pulse 2s ease infinite;
+}
+
+.heroTitle {
+  font-family: $font-display;
+  font-size: clamp(2rem, 8vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: $ink;
+}
+
+// Subtitle sits directly below the main title
+.heroSubtitle {
+  font-family: $font-display;
+  font-size: clamp(1rem, 3.2vw, 1.35rem);
+  font-weight: 700;
+  color: $sun;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  // Slight negative top margin to pull it snug under the title
+  margin-top: -4px;
+
+  // On mobile the layout is centred, so match alignment
+  text-align: center;
+
+  @include xl {
+    text-align: left;
+  }
+}
+
+.titleOrange {
+  color: $sun;
+}
+.titleBlue {
+  color: $sky;
+  display: block;
+}
+.titleSun {
+  color: $sun;
+}
+
+.waveUnderline {
+  display: inline-block;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12'%3E%3Cpath d='M0,6 Q12.5,0 25,6 Q37.5,12 50,6 Q62.5,0 75,6 Q87.5,12 100,6' fill='none' stroke='%23FFB830' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 60px 8px;
+    animation: waveSlide 2s linear infinite;
+  }
+}
+
+.heroDesc {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: $ink-muted;
+  max-width: 440px;
+}
+
+// ─── ACTION BUTTONS ───────────────────────────────────────────────────────────
+.heroActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include xl {
+    justify-content: flex-start;
+  }
+}
+
+.btnPrimary {
+  @include btn-reset;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: $r-full;
+  background: $sun;
+  color: $white;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: $sh-sun;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $sh-sun-hover;
+  }
+}
+
+.btnOutline {
+  @include btn-reset;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: $r-full;
+  background: $white;
+  color: $sun;
+  border: 2.5px solid $sun;
+  font-weight: 800;
+  font-size: 1rem;
+
+  &:hover {
+    background: $sun-pale;
+  }
+}
+
+// ─── TRUST CHIPS ──────────────────────────────────────────────────────────────
+.heroChips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include xl {
+    justify-content: flex-start;
+  }
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: $white;
+  border-radius: $r-full;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: $ink;
+  box-shadow: $sh-md;
+}
+
+.chipDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ─── VISUAL COLUMN ────────────────────────────────────────────────────────────
+.heroVisual {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+
+  @include xl {
+    max-width: 460px;
+    flex-shrink: 0;
+  }
+}
+
+// ─── MAIN CARD ────────────────────────────────────────────────────────────────
+.heroCardMain {
+  background: $white;
+  border-radius: $r-xl;
+  padding: $sp-md;
+  box-shadow: $sh-lg;
+  border: 3px solid rgba(255, 107, 26, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.cardScene {
+  background: linear-gradient(135deg, #fff8e6 0%, #ffe6cc 100%);
+  border-radius: $r-lg;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 16px;
+
+  @include sm {
+    height: 240px;
+  }
+}
+
+.sceneBg {
+  object-fit: cover;
+  object-position: bottom center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sceneChar {
+  position: absolute;
+  z-index: 2;
+}
+
+.sceneCharLeft {
+  left: 14%;
+  bottom: 12%;
+}
+.sceneCharCenter {
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.sceneCharRight {
+  right: 14%;
+  bottom: 14%;
+}
+
+.cardLabel {
+  margin-top: 14px;
+  text-align: center;
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: $ink;
+}
+
+.cardSub {
+  text-align: center;
+  font-size: 0.85rem;
+  color: $ink-muted;
+  margin-top: 4px;
+}
+
+// ─── FLOATING BUBBLES ─────────────────────────────────────────────────────────
+.heroBubble {
+  position: absolute;
+  background: $white;
+  border-radius: $r-lg;
+  padding: 10px 14px;
+  box-shadow: $sh-md;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.bubbleTopRight {
+  top: -16px;
+  right: 0;
+  border: 2px solid $leaf-pale;
+}
+.bubbleBottomLeft {
+  bottom: 100px;
+  left: -24px;
+  border: 2px solid $sky-pale;
+}
+.bubbleBottomRight {
+  bottom: 70px;
+  right: -16px;
+  border: 2px solid $honey-pale;
+}
+
+.bubbleIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.bubbleTitle {
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: $ink;
+  line-height: 1.3;
+}
+
+.bubbleSub {
+  font-size: 0.68rem;
+  color: $ink-muted;
+  line-height: 1.3;
+}
+
+// ─── KEYFRAMES (local) ────────────────────────────────────────────────────────
+@keyframes badgePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes waveSlide {
+  from {
+    background-position: 0 center;
+  }
+  to {
+    background-position: 60px center;
+  }
+}
