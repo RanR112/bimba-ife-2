@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.scss";
 
-const SITE_URL = "https://bimbaife.my.id";
+const SITE_URL = "https://www.bimbaife.my.id";
 const SITE_NAME = "Bimba IFE";
 const SITE_TITLE = "Bimba IFE - Belajar Seru Bareng!";
 const SITE_DESCRIPTION =
     "Lembaga bimbingan belajar anak usia 3-7 tahun terpercaya. Program Calistung, English, dan Jarimatika yang menyenangkan dan inovatif.";
-const AUTHOR_URL = "https://randyrafael.my.id";
+const AUTHOR_URL = "https://www.randyrafael.my.id";
 const AUTHOR_NAME = "Randy Rafael";
 
 export const metadata: Metadata = {
